@@ -4,6 +4,8 @@ import { splitJournalVolumeString, splitVolumeIssueString } from "../utils";
 import { Article } from "../config";
 import cheerio from "cheerio";
 
+declare type CheerioStatic = ReturnType<(typeof cheerio)["load"]>;
+
 /**
  *
  *
@@ -14,7 +16,7 @@ import cheerio from "cheerio";
  */
 const _parseUserArticle = (
   $: CheerioStatic,
-  div: CheerioElement,
+  div: cheerio.Element,
   tags: IHTMLTags
 ): IArticle | undefined => {
   if ($) {

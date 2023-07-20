@@ -3,6 +3,8 @@ import { IArticle, IHTMLTags } from "../interfaces";
 import { Article } from "../config";
 import cheerio from "cheerio";
 
+declare type CheerioStatic = ReturnType<(typeof cheerio)["load"]>;
+
 const baseUrl = "http://scholar.google.com";
 
 /**
@@ -14,7 +16,7 @@ const baseUrl = "http://scholar.google.com";
  */
 const _parsePublicationTag = (
   $: CheerioStatic,
-  div: Cheerio,
+  div: cheerio.Cheerio,
   article: Article
 ): void => {
   let authorHTMLString = $(div).text();
@@ -56,7 +58,7 @@ const _parsePublicationTag = (
  */
 const _parseFooterLinks = (
   $: CheerioStatic,
-  div: Cheerio,
+  div: cheerio.Cheerio,
   article: Article
 ): void => {
   $(div).each((_, el) => {
@@ -90,7 +92,7 @@ const _parseFooterLinks = (
  */
 const _parseScholarArticle = (
   $: CheerioStatic,
-  div: CheerioElement,
+  div: cheerio.Element,
   tags: IHTMLTags
 ): Article | undefined => {
   if ($) {
