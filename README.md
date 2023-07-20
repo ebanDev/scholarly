@@ -1,10 +1,5 @@
 # Scholarly
 
-[![Build Status](https://travis-ci.org/ukalwa/scholarly.svg?branch=master)](https://travis-ci.org/ukalwa/scholarly)
-[![codecov](https://codecov.io/gh/ukalwa/scholarly/branch/master/graph/badge.svg)](https://codecov.io/gh/ukalwa/scholarly)
-[![npm](https://img.shields.io/npm/v/scholarly)](https://www.npmjs.com/package/scholarly)
-[![npm](https://img.shields.io/npm/dw/scholarly)](https://www.npmjs.com/package/scholarly)
-
 A Node.js module to fetch and parse academic articles from Google Scholar.
 
 ## Installation
