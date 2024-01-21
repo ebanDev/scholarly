@@ -2,6 +2,8 @@
 
 A Node.js module to fetch and parse academic articles from Google Scholar.
 
+Fork based on the original [scholarly](https://github.com/ukalwa/scholarly]) module by [Upender Kalwa](https://github.com/ukalwa), modified to use `fetch` instead of `axios`, removing citations search as it is now behind a login wall.
+
 ## Installation
 
 ```bash
@@ -23,11 +25,6 @@ var scholarly = require("scholarly");
 scholarly.search("machine learning").then((data) => {
   console.log(data);
 });
-
-// To list articles a user co-authored
-scholarly.user("H18-9fkAAAAJ").then((data) => {
-  console.log(data);
-});
 ```
 
 ### Typescript
@@ -36,8 +33,6 @@ scholarly.user("H18-9fkAAAAJ").then((data) => {
 import { search, user } from "scholarly";
 
 console.log(search("machine learning"));
-
-console.log(user("H18-9fkAAAAJ"));
 ```
 
 ### Output
@@ -73,36 +68,9 @@ The search would result in a list of articles.
 
 ```
 
-#### User query output format
-
-```code
-[
-  ...
-  {
-    title:
-     'Skin Cancer Diagnostics with an All-Inclusive Smartphone Application',
-    url: '',
-    authors: [ 'U Kalwa', ' C Legner', ' T Kong', ' S Pandey' ],
-    year: 2019,
-    numCitations: 4,
-    journal: 'Symmetry',
-    volume: 11,
-    issue: 6,
-    pages: '790'
-  },
-    ...
-]
-```
-
 ## Testing
 
 The module can be tested by running `npm run test`
-
-## To-Do
-
-- [ ] Replace Cheerio + axios with jsdom to run scripts on the page
-- [ ] Explore a way to test JSDOM without hitting API in tests (`NODE_ENV === "production" ? jsdom.fromURL : jsdom.fromFile` maybe?)
-- [ ] Add Microsoft Academic for fetching academic articles
 
 ## Acknowledgements
 

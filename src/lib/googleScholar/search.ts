@@ -5,14 +5,13 @@ import cheerio from "cheerio";
 
 declare type CheerioStatic = ReturnType<(typeof cheerio)["load"]>;
 
-const baseUrl = "http://scholar.google.com";
+const baseUrl = "https://scholar.google.com";
 
 /**
- *
- *
- * @param {CheerioStatic} $
- * @param {Cheerio} div
- * @param {Article} article
+ * A helper function to parse the publication tag from the article.
+ * @param $ CheerioStatic
+ * @param div Cheerio.Element
+ * @param article IArticle
  */
 const _parsePublicationTag = (
   $: CheerioStatic,
@@ -31,7 +30,7 @@ const _parsePublicationTag = (
     if (char === "," || char === "-" || idx === ellipsisIdx) {
       article.authors.push(author.trim());
       if (char !== ",") {
-        authorHTMLString = authorHTMLString.substr(
+        authorHTMLString = authorHTMLString.substring(
           idx === ellipsisIdx ? idx + 3 : idx + 1
         );
         break;
@@ -44,7 +43,7 @@ const _parsePublicationTag = (
   article.publication = splitData.pop()?.trim();
   const year = splitData.pop();
   if (year) {
-    article.year = parseInt(year.substr(-5));
+    article.year = parseInt(year.substring(-5));
   }
   return;
 };
@@ -71,7 +70,7 @@ const _parseFooterLinks = (
         const citationCountPrefix = "Cited by ";
         article.citationUrl = baseUrl + href;
         article.numCitations = parseInt(
-          $(el).text().substr(citationCountPrefix.length)
+          $(el).text().substring(citationCountPrefix.length)
         );
       } else if (href.indexOf("/scholar?q=related") >= 0) {
         article.relatedUrl = baseUrl + href;
@@ -83,13 +82,12 @@ const _parseFooterLinks = (
 };
 
 /**
- *
- *
- * @param {CheerioStatic} $
- * @param {CheerioElement} div
- * @param {IHTMLTags} tags
- * @returns {Article|undefined}
- */
+  * A helper function to parse the article data from the user's Google Scholar profile.
+  * @param $ CheerioStatic
+  * @param div Cheerio.Element
+  * @param tags IHTMLTags
+  * @returns IArticle | undefined
+  */
 const _parseScholarArticle = (
   $: CheerioStatic,
   div: cheerio.Element,

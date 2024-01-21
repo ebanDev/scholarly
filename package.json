@@ -1,6 +1,6 @@
 {
   "name": "scholarly",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A library to query and parse academic articles from Google Scholar",
   "main": "./dist/index.js",
   "scripts": {
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ukalwa/scholarly.git"
+    "url": "git+https://github.com/ebanDev/scholarly.git"
   },
   "keywords": [
     "google",
@@ -28,15 +28,15 @@
   "author": "Upender Kalwa",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ukalwa/scholarly/issues"
+    "url": "https://github.com/ebanDev/scholarly/issues"
   },
-  "homepage": "https://github.com/ukalwa/scholarly#readme",
+  "homepage": "https://github.com/ebanDev/scholarly#readme",
   "devDependencies": {
     "@types/cheerio": "0.22.31",
     "@typescript-eslint/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^5.10.0",
     "ava": "^5.0.1",
-    "axios-mock-adapter": "^1.18.1",
+    "axios-mock-adapter": "^1.22.0",
     "codecov": "^3.6.5",
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.3.0",
@@ -48,7 +48,7 @@
     "typescript": "^5.0.3"
   },
   "dependencies": {
-    "axios": "^1.1.2",
+    "axios": "^1.6.5",
     "cheerio": "^1.0.0-rc.3"
   },
   "ava": {

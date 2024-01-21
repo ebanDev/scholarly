@@ -1,4 +1,3 @@
-import googleScholar from "./lib/googleScholar";
+import googleScholar from "./lib/googleScholar/index";
 
-export const user = googleScholar.user;
 export const search = googleScholar.search;

@@ -1,15 +1,11 @@
 import { IArticle, IHTMLTags } from "../interfaces";
 
-import axios from "axios";
 import { parseScholarArticle } from "./search";
-import { parseUserArticle } from "./user";
 
 /**
- *
- *
- * @class _googleScholar
- * @extends {ArticleParser}
- */
+ * A class to interact with Google Scholar.
+ * @class GoogleScholar
+  */
 class GoogleScholar {
   baseUrl = "https://scholar.google.com";
   searchTags: IHTMLTags = {
@@ -32,9 +28,9 @@ class GoogleScholar {
   };
 
   /**
-   *
-   *
-   * @param {string} query
+   * Search Google Scholar for articles.
+   * @param query string
+   * @returns Promise<IArticle[]>
    */
   search = async (query: string): Promise<IArticle[]> => {
     let articles: IArticle[] = [];
@@ -42,33 +38,12 @@ class GoogleScholar {
       throw new Error("Query cannot be empty!");
     }
     const searchUrl = encodeURI(`/scholar?hl=en&q=${query}`);
-    const result = await axios.get(this.baseUrl + searchUrl);
-    if (result.status !== 200) {
-      throw new Error(result.statusText);
+    const response = await fetch(this.baseUrl + searchUrl);
+    if (!response.ok) {
+      throw new Error(response.statusText);
     }
-    const data: string = result.data;
+    const data: string = await response.text();
     articles = parseScholarArticle(data, this.searchTags);
-    return articles;
-  };
-
-  /**
-   *
-   *
-   * @param {string} profile
-   */
-  user = async (profile: string): Promise<IArticle[]> => {
-    let articles: IArticle[] = [];
-    if (profile === "") {
-      throw new Error("User cannot be empty!");
-    }
-    const profileUrl = encodeURI(`/citations?hl=en&user=${profile}`);
-    const result = await axios.get(this.baseUrl + profileUrl);
-    if (result.status !== 200) {
-      throw new Error(result.statusText);
-    }
-    // Get HTML string
-    const data: string = result.data;
-    articles = parseUserArticle(data, this.userTags);
     return articles;
   };
 }
