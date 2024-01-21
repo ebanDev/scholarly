@@ -16,7 +16,7 @@ const baseUrl = "https://scholar.google.com";
 const _parsePublicationTag = (
   $: CheerioStatic,
   div: cheerio.Cheerio,
-  article: Article
+  article: Article,
 ): void => {
   let authorHTMLString = $(div).text();
   if (authorHTMLString === "") {
@@ -31,7 +31,7 @@ const _parsePublicationTag = (
       article.authors.push(author.trim());
       if (char !== ",") {
         authorHTMLString = authorHTMLString.substring(
-          idx === ellipsisIdx ? idx + 3 : idx + 1
+          idx === ellipsisIdx ? idx + 3 : idx + 1,
         );
         break;
       }
@@ -58,7 +58,7 @@ const _parsePublicationTag = (
 const _parseFooterLinks = (
   $: CheerioStatic,
   div: cheerio.Cheerio,
-  article: Article
+  article: Article,
 ): void => {
   $(div).each((_, el) => {
     if ($) {
@@ -70,7 +70,7 @@ const _parseFooterLinks = (
         const citationCountPrefix = "Cited by ";
         article.citationUrl = baseUrl + href;
         article.numCitations = parseInt(
-          $(el).text().substring(citationCountPrefix.length)
+          $(el).text().substring(citationCountPrefix.length),
         );
       } else if (href.indexOf("/scholar?q=related") >= 0) {
         article.relatedUrl = baseUrl + href;
@@ -91,7 +91,7 @@ const _parseFooterLinks = (
 const _parseScholarArticle = (
   $: CheerioStatic,
   div: cheerio.Element,
-  tags: IHTMLTags
+  tags: IHTMLTags,
 ): Article | undefined => {
   if ($) {
     const article = new Article();
@@ -115,7 +115,7 @@ const _parseScholarArticle = (
  */
 export const parseScholarArticle = (
   html: string,
-  tags: IHTMLTags
+  tags: IHTMLTags,
 ): IArticle[] => {
   const articles: IArticle[] = [];
   const $ = cheerio.load(html);

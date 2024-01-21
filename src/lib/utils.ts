@@ -9,7 +9,7 @@ export const splitJournalVolumeString = (html: string): number => {
 };
 
 export const splitVolumeIssueString = (
-  html: string
+  html: string,
 ): { volume?: number; issue?: number } => {
   const output: { volume?: number; issue?: number } = {
     volume: undefined,
