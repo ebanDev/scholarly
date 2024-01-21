@@ -5,7 +5,7 @@ import { parseScholarArticle } from "./search";
 /**
  * A class to interact with Google Scholar.
  * @class GoogleScholar
-  */
+ */
 class GoogleScholar {
   baseUrl = "https://scholar.google.com";
   searchTags: IHTMLTags = {

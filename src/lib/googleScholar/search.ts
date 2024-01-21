@@ -82,12 +82,12 @@ const _parseFooterLinks = (
 };
 
 /**
-  * A helper function to parse the article data from the user's Google Scholar profile.
-  * @param $ CheerioStatic
-  * @param div Cheerio.Element
-  * @param tags IHTMLTags
-  * @returns IArticle | undefined
-  */
+ * A helper function to parse the article data from the user's Google Scholar profile.
+ * @param $ CheerioStatic
+ * @param div Cheerio.Element
+ * @param tags IHTMLTags
+ * @returns IArticle | undefined
+ */
 const _parseScholarArticle = (
   $: CheerioStatic,
   div: cheerio.Element,
